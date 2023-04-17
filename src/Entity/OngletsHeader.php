@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: OngletsHeaderRepository::class)]
 class OngletsHeader
 {
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -20,8 +21,8 @@ class OngletsHeader
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $lien = null;
 
-    #[ORM\Column(type: Types::ARRAY, nullable: true)]
-    private array $sous_onglets = [];
+    #[ORM\Column]
+    private array $sous_onglet = [];
 
     public function getId(): ?int
     {
@@ -52,14 +53,14 @@ class OngletsHeader
         return $this;
     }
 
-    public function getSousOnglets(): array
+    public function getSous_Onglet(): array
     {
-        return $this->sous_onglets;
+        return $this->sous_onglet;
     }
 
-    public function setSousOnglets(?array $sous_onglets): self
+    public function setSous_Onglet(array $sous_onglet): self
     {
-        $this->sous_onglets = $sous_onglets;
+        $this->sous_onglet = $sous_onglet;
 
         return $this;
     }
