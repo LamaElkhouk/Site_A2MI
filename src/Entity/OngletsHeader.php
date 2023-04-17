@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\OngletsHeaderRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -21,8 +23,13 @@ class OngletsHeader
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $lien = null;
 
-    #[ORM\Column]
-    private array $sous_onglet = [];
+    #[ORM\OneToMany(mappedBy: 'ongletsHeader', targetEntity: SousOnglet::class)]
+    private Collection $sous_onglet;
+
+    public function __construct()
+    {
+        $this->sous_onglet = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -53,14 +60,32 @@ class OngletsHeader
         return $this;
     }
 
-    public function getSous_Onglet(): array
+    /**
+     * @return Collection<int, SousOnglet>
+     */
+    public function getSousOnglet(): Collection
     {
         return $this->sous_onglet;
     }
 
-    public function setSous_Onglet(array $sous_onglet): self
+    public function addSousOnglet(SousOnglet $sousOnglet): self
     {
-        $this->sous_onglet = $sous_onglet;
+        if (!$this->sous_onglet->contains($sousOnglet)) {
+            $this->sous_onglet->add($sousOnglet);
+            $sousOnglet->setOngletsHeader($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSousOnglet(SousOnglet $sousOnglet): self
+    {
+        if ($this->sous_onglet->removeElement($sousOnglet)) {
+            // set the owning side to null (unless already changed)
+            if ($sousOnglet->getOngletsHeader() === $this) {
+                $sousOnglet->setOngletsHeader(null);
+            }
+        }
 
         return $this;
     }

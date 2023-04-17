@@ -18,10 +18,10 @@
 					<ul class="navbar-nav flex-row">
 						{% for onglet in onglets %}
 							<li class="nav-item">{{onglet.nom}}</li>
-							{% if onglet.sous_onglet is not empty %}
+							{% if onglet.SousOnglet is not empty %}
 								<ul>
-									{% for sousOnglet in onglet.sous_onglet %}
-										<li>{{ sousOnglet }}</li>
+									{% for onglet in onglet.SousOnglet %}
+										<li>{{ onglet.nom }}</li>
 									{% endfor %}
 								</ul>
 							{% endif %}
