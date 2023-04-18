@@ -14,7 +14,9 @@
 		<body>
 			<header class=" bg-light ">
 				<nav class="d-flex  flex-row justify-content-between">
-					<a class="" href="#">Logo</a>
+					<a class="" href="{{path('Accueil')}}">
+						<img src="{{ asset('Logo_A2MI.svg') }}" alt="Mon image">
+					</a>
 					<ul class="navbar-nav flex-row">
 						{% for onglet in onglets %}
 							<li class="nav-item">
@@ -24,7 +26,7 @@
 								<ul>
 									{% for sousOnglet in onglet.SousOnglet %}
 										<li class="nav-item">
-											<a class="nav-link" href="">{{sousOnglet.nom}}</a>
+											<a class="nav-link" href="{{sousOnglet.lien}}">{{sousOnglet.nom}}</a>
 										</li>
 									{% endfor %}
 								</ul>

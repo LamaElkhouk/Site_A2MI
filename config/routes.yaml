@@ -1,14 +1,29 @@
-index:
-    path: /Accueil
-    controller: App\Controller\DefaultController::header
-    methods: GET
-    options:
-        name: Accueil
 
-services:
-    path: /Services
-    controller: App\Controller\DefaultController::header
-    methods: GET
-    options:
-        name: Services
+controllers:
+    resource: ../src/Controller/
+    type: annotation
 
+kernel:
+    resource: ../src/Kernel.php
+    type: annotation
+
+#index:
+#    path: /Accueil
+#    controller: App\Controller\DefaultController::header
+#    methods: GET
+#    options:
+#        name: Accueil
+
+#services:
+#    path: /Services
+#    controller: App\Controller\DefaultController::header
+#    methods: GET
+#    options:
+#        name: Services
+
+#service_informatique:
+#    path: /Service_informatique
+#    controller: App\Controller\DefaultController::service_informatique
+#    methods: GET
+#    options:
+#        name: Service_informatique
