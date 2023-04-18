@@ -2,11 +2,12 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\OngletsHeader;
 use App\Repository\OngletsHeaderRepository;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class DefaultController extends AbstractController
 {
@@ -14,16 +15,19 @@ class DefaultController extends AbstractController
     {
     }
 
-    #[Route('/', name: 'app_default')]
-    public function index(): Response
+    #[Route('/Accueil', name: 'Accueil')]
+    #[Route('/Services', name: 'Services')]
+
+    public function header(Request $request): Response
     {
         $onglets = $this->ongletRepository->findAll(OngletsHeader::class);
 
-
-
+        $servicesActive = ($request->get('_route') === 'Services');
 
         return $this->render('default/index.html.twig', [
-            'title' => 'Page accueil', 'onglets' => $onglets
+            'title' => 'Page accueil',
+            'onglets' => $onglets,
+            'servicesActive' => $servicesActive
         ]);
     }
 }

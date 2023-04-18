@@ -1,5 +1,14 @@
-controllers:
-    resource:
-        path: ../src/Controller/
-        namespace: App\Controller
-    type: attribute
+index:
+    path: /Accueil
+    controller: App\Controller\DefaultController::header
+    methods: GET
+    options:
+        name: Accueil
+
+services:
+    path: /Services
+    controller: App\Controller\DefaultController::header
+    methods: GET
+    options:
+        name: Services
+

@@ -17,11 +17,15 @@
 					<a class="" href="#">Logo</a>
 					<ul class="navbar-nav flex-row">
 						{% for onglet in onglets %}
-							<li class="nav-item">{{onglet.nom}}</li>
+							<li class="nav-item">
+								<a class="nav-link" href="{{onglet.lien}}">{{onglet.nom}}</a>
+							</li>
 							{% if onglet.SousOnglet is not empty %}
 								<ul>
-									{% for onglet in onglet.SousOnglet %}
-										<li>{{ onglet.nom }}</li>
+									{% for sousOnglet in onglet.SousOnglet %}
+										<li class="nav-item">
+											<a class="nav-link" href="">{{sousOnglet.nom}}</a>
+										</li>
 									{% endfor %}
 								</ul>
 							{% endif %}
