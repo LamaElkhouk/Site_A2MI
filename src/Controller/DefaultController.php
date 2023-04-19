@@ -3,7 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\OngletsHeader;
+use App\Entity\Introduction;
+use App\Entity\Video;
 use App\Repository\OngletsHeaderRepository;
+use App\Repository\IntroductionRepository;
+use App\Repository\VideoRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -12,7 +16,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class DefaultController extends AbstractController
 {
-    public function __construct(private OngletsHeaderRepository $ongletRepository)
+    public function __construct(private OngletsHeaderRepository $ongletRepository, private IntroductionRepository $introductionRepository, private VideoRepository $videoRepository)
     {
     }
 
@@ -22,15 +26,20 @@ class DefaultController extends AbstractController
 
     public function header(Request $request): Response
     {
+        //onglets du header
         $onglets = $this->ongletRepository->findAll(OngletsHeader::class);
 
-        $Active = ($request->get('_route') === 'Services');
+        //introduction sur la page d'accueil
+        $introduction = $this->introductionRepository->findAll(Introduction::class);
 
+        //lien vers la video
+
+        $video = $this->videoRepository->findAll(Video::class);
 
         return $this->render('default/index.html.twig', [
-            'title' => 'Page accueil',
             'onglets' => $onglets,
-            'Active' => $Active
+            'introduction' => $introduction,
+            'video' => $video
         ]);
     }
 

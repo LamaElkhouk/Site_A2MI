@@ -1,5 +1,15 @@
-@import url(style-general.css);
+@import url(theme.css);
 
-h1{
-    color:red;
+h3{
+    color:var(--bg-color);
+}
+
+body,header{
+    background-color: var(--beige);
+}
+.container_introduction{
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.container_video{
+    background: linear-gradient(270deg, rgba(255,85,151,1) 0%, rgba(217,217,217,1) 100%);
 }

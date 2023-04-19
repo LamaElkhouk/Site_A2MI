@@ -4,6 +4,53 @@
 
 {% block body %}
 <div class="example-wrapper">
-    <h1>{{ title }}</h1>
+
+    <section class="introduction">
+
+        <div class="image_introduction">
+        </div>
+        <div class="container_introduction">
+            
+            {% for item in introduction %}
+						
+			
+            <p class="text_description">{{item.description}}</p>
+            <div>
+                {% for item in item.SousDescription %}
+                    <p>{{item.text}}</p>
+                {% endfor%}
+            </div>
+
+            <a href="">
+                <div class="bouton_introduction">en savoir plus</div>
+            </a>
+            {% endfor %}
+        </div>
+        
+
+    </section>
+    <section class="video">
+        {% for item in video %}
+        <h3>{{item.titre}}</h3>
+        <div class="decoration_h3"></div>
+        <div class="container_video">
+            <iframe width="560" height="315" src="{{item.getLienVideo()}}" frameborder="0" allowfullscreen></iframe>
+        </div>
+        {% endfor %}
+    </section>
+    <section class="service">
+        <h3><h3>
+
+    </section>
+    <section class="echo-mer">
+
+    </section>
+    <section class="partenaire-client">
+
+    </section>
+    <section class="technologie">
+
+    </section>
+    
 </div>
 {% endblock %}
