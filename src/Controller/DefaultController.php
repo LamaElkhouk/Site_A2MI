@@ -9,11 +9,13 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+
 class DefaultController extends AbstractController
 {
     public function __construct(private OngletsHeaderRepository $ongletRepository)
     {
     }
+
 
     #[Route('/Accueil', name: 'Accueil')]
     #[Route('/Services', name: 'Services')]
@@ -23,6 +25,7 @@ class DefaultController extends AbstractController
         $onglets = $this->ongletRepository->findAll(OngletsHeader::class);
 
         $Active = ($request->get('_route') === 'Services');
+
 
         return $this->render('default/index.html.twig', [
             'title' => 'Page accueil',
