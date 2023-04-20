@@ -90,48 +90,34 @@
 						Professionnels & particuliers, bénéficiez de nos 20 années d'expérience.
 					</p>
 					<div class="groupe_icone">
-						<a>
+						<a href="https://www.facebook.com/A2MI17">
 							<img class="icone" src="{{ asset('icones/footer/fb.svg') }}" alt="lien vers facebook A2MI">
 						</a>
-						<a>
+						<a href="https://twitter.com/A2MI17">
 							<img class="icone" src="{{ asset('icones/footer/tw.svg') }}" alt="lien vers twitter A2MI">
 						</a>
-						<a>
+						<a href="https://www.instagram.com/a2mi17/">
 							<img class="icone" src="{{ asset('icones/footer/insta.svg') }}" alt="lien vers instagram A2MI">
 						</a>
-						<a>
+						<a href="https://www.linkedin.com/in/michel-fouillen-27576392/">
 							<img class="icone" src="{{ asset('icones/footer/link.svg') }}" alt="lien vers linkedin A2MI">
 						</a>
 
 					</div>
 				</div>
 				<diV>
-					<h4>A visité</h4>
+					<h4>A visiter</h4>
 					<div class="groupe_service">
-						<div>
-							<img class="fleche_droite" src="{{ asset('icones/footer/fleche_droite.svg') }}" alt="fleche droite footer A2MI">
-							<p class="underline">Service informatique</p>
-						</div>
-						<div>
-							<img class="fleche_droite" src="{{ asset('icones/footer/fleche_droite.svg') }}" alt="fleche droite footer A2MI">
-							<p class="underline">Gestion administrative</p>
-						</div>
-						<div>
-							<img class="fleche_droite" src="{{ asset('icones/footer/fleche_droite.svg') }}" alt="fleche droite footer A2MI">
-							<p class="underline">Communication</p>
-						</div>
-						<div>
-							<img class="fleche_droite" src="{{ asset('icones/footer/fleche_droite.svg') }}" alt="fleche droite footer A2MI">
-							<p class="underline">Sites internet</p>
-						</div>
-						<div>
-							<img class="fleche_droite" src="{{ asset('icones/footer/fleche_droite.svg') }}" alt="fleche droite footer A2MI">
-							<p class="underline">Assistance</p>
-						</div>
-						<div>
-							<img class="fleche_droite" src="{{ asset('icones/footer/fleche_droite.svg') }}" alt="fleche droite footer A2MI">
-							<p class="underline">Formation</p>
-						</div>
+						{% for onglet in onglets %}
+							{% if onglet.SousOnglet is not empty and onglet.nom=="Services" %}
+									{% for sousOnglet in onglet.SousOnglet %}
+										<div>
+											<img class="fleche_droite" src="{{ asset('icones/footer/fleche_droite.svg') }}" alt="fleche droite footer A2MI">
+											<a class="underline" href="{{sousOnglet.lien}}">{{sousOnglet.nom}}</a>
+										</div>
+									{% endfor %}
+							{% endif %}
+						{% endfor %}
 					</div>
 				</div>
 			</section>
@@ -140,7 +126,7 @@
 					<p>COPYRIGHT @ 2023</p>
 					<div>
 						<a>Mentions légales |</a> 
-						<a> CVG |</a>
+						<a> CGV |</a>
 						<a> Charte RSE</a> 
 					</div>
 				</div>
