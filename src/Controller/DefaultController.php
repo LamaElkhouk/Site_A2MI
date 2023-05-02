@@ -5,6 +5,8 @@ namespace App\Controller;
 use App\Entity\OngletsHeader;
 use App\Entity\Introduction;
 use App\Entity\Video;
+use App\Entity\Service;
+use App\Repository\ServiceRepository;
 use App\Repository\OngletsHeaderRepository;
 use App\Repository\IntroductionRepository;
 use App\Repository\VideoRepository;
@@ -16,13 +18,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class DefaultController extends AbstractController
 {
-    public function __construct(private OngletsHeaderRepository $ongletRepository, private IntroductionRepository $introductionRepository, private VideoRepository $videoRepository)
+    public function __construct(private OngletsHeaderRepository $ongletRepository, private IntroductionRepository $introductionRepository, private VideoRepository $videoRepository, private ServiceRepository $serviceRepository)
     {
     }
 
 
-    #[Route('/Accueil', name: 'Accueil')]
-    #[Route('/Services', name: 'Services')]
+    #[Route('/accueil', name: 'accueil')]
+    #[Route('/services', name: 'services')]
 
     public function header(Request $request): Response
     {
@@ -36,16 +38,21 @@ class DefaultController extends AbstractController
 
         $video = $this->videoRepository->findAll(Video::class);
 
+        //section services 02-05-2023
+
+        $service = $this->serviceRepository->findAll(Service::class);
+
         return $this->render('default/index.html.twig', [
             'onglets' => $onglets,
             'introduction' => $introduction,
-            'video' => $video
+            'video' => $video,
+            'service' => $service
         ]);
     }
 
     //liens vers les services
 
-    #[Route('/Service_informatique', name: 'Service_informatique')]
+    #[Route('/service_informatique', name: 'service_informatique')]
     public function service_informatique(Request $request): Response
     {
         $onglets = $this->ongletRepository->findAll(OngletsHeader::class);
@@ -55,7 +62,7 @@ class DefaultController extends AbstractController
         ]);
     }
 
-    #[Route('/Communication', name: 'Communication')]
+    #[Route('/communication', name: 'communication')]
     public function Communication(Request $request): Response
     {
         $onglets = $this->ongletRepository->findAll(OngletsHeader::class);
@@ -64,7 +71,7 @@ class DefaultController extends AbstractController
         ]);
     }
 
-    #[Route('/Assistance', name: 'Assistance')]
+    #[Route('/assistance', name: 'assistance')]
     public function Assistance(Request $request): Response
     {
         $onglets = $this->ongletRepository->findAll(OngletsHeader::class);
@@ -73,7 +80,7 @@ class DefaultController extends AbstractController
         ]);
     }
 
-    #[Route('/Formation', name: 'Formation')]
+    #[Route('/formation', name: 'formation')]
     public function Formation(Request $request): Response
     {
         $onglets = $this->ongletRepository->findAll(OngletsHeader::class);
@@ -83,7 +90,7 @@ class DefaultController extends AbstractController
     }
 
 
-    #[Route('/Gestion_administrative', name: 'Gestion_administrative')]
+    #[Route('/gestion_administrative', name: 'gestion_administrative')]
     public function Gestion_administrative(Request $request): Response
     {
         $onglets = $this->ongletRepository->findAll(OngletsHeader::class);
@@ -92,7 +99,7 @@ class DefaultController extends AbstractController
         ]);
     }
 
-    #[Route('/Site_internet', name: 'Site_internet')]
+    #[Route('/site_internet', name: 'site_internet')]
     public function Site_internet(Request $request): Response
     {
         $onglets = $this->ongletRepository->findAll(OngletsHeader::class);
@@ -103,7 +110,7 @@ class DefaultController extends AbstractController
 
     //lien vers la page agence
 
-    #[Route('/Agence', name: 'Agence')]
+    #[Route('/agence', name: 'agence')]
     public function Agence(Request $request): Response
     {
         $onglets = $this->ongletRepository->findAll(OngletsHeader::class);
@@ -113,11 +120,21 @@ class DefaultController extends AbstractController
     }
 
     //lien vers la page mon compte
-    #[Route('/Mon_compte', name: 'Mon_compte')]
+    #[Route('/mon_compte', name: 'mon_compte')]
     public function Mon_compte(Request $request): Response
     {
         $onglets = $this->ongletRepository->findAll(OngletsHeader::class);
         return $this->render('default/monCompte.html.twig', [
+            'onglets' => $onglets
+        ]);
+    }
+
+    //lien vers la page mon compte
+    #[Route('/contact', name: 'contact')]
+    public function Contact(Request $request): Response
+    {
+        $onglets = $this->ongletRepository->findAll(OngletsHeader::class);
+        return $this->render('default/contact.html.twig', [
             'onglets' => $onglets
         ]);
     }

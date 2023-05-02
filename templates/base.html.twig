@@ -19,15 +19,19 @@
 	<body>
 		<header class="">
 			<nav class="d-flex  flex-row justify-content-between menu">
-				<a class="logo_A2MI" href="{{path('Accueil')}}">
+				<a class="logo_A2MI" href="{{path('accueil')}}">
 					<img  src="{{ asset('Logo_A2MI.svg') }}" alt="Mon image">
 				</a>
 				<ul class="navbar-nav flex-row menu_central">
 					{% for onglet in onglets %}
 						<li class="nav-item">
-							<a class="onglet_menu" href="{{onglet.lien}}">{{onglet.nom}}</a>
-						</li>
-						{% if onglet.SousOnglet is not empty %}
+							<a class="onglet_menu" href="{{onglet.lien}}">{{onglet.nom}} </a>
+							<!--on ajoute la décoration du petit triangle si il y a un sous menu 02/05/2023-->
+								{% if onglet.SousOnglet is not empty %}
+									<div class="triangle"></div>
+								{% endif %}
+							<!--sous onglet 02-05-2023-->
+							{% if onglet.SousOnglet is not empty %}
 							<ul class="sous_onglet">
 								{% for sousOnglet in onglet.SousOnglet %}
 									<li class="nav-item">
@@ -36,17 +40,25 @@
 								{% endfor %}
 							</ul>
 						{% endif %}
+						</li>
+						
 					{% endfor %}
 				</ul>
 				
 				<ul class="navbar-nav onglet_menu_droite">
-					<li>
+					<li class="nav-item">
 						<img class="theme_icone"id="theme-toggle" src="{{ asset('icones/header/theme.svg') }}" alt="mode theme A2MI">
 					</li>
 
-					<li class="nav-item onglet_menu">Français
-						<ul>
-							<li class="sous_onglet ">Anglais</li>
+					
+					<li class="nav-item">
+						<a class="onglet_menu">Français</a>
+						<div class="triangle"></div>
+						<!--sous onglet 02-05-2023-->
+						<ul class="sous_onglet">
+							<li class="nav-item">
+								<a class="onglet_menu">Anglais</a>
+							</li>
 						</ul>
 					</li>
 				</ul>
@@ -62,7 +74,7 @@
 			<section>
 			<section class="first_section_footer">
 				<diV>
-					<a class="" href="{{path('Accueil')}}">
+					<a class="" href="{{path('accueil')}}">
 						<img class="position_logo_footer" src="{{ asset('Logo_A2MI.svg') }}" alt="Mon image">
 					</a>
 					<div class="groupe_coordonnees">
