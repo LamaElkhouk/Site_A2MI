@@ -11,6 +11,7 @@
     --header-color:#2D353C;
     --footer-color:#22282D;
     --dark-grey:#212121;
+    --light-grey:rgb(134, 144, 154);
     --bg-icone:#1E2328;
     --black:#000000;
     --black2:#0F1113;
@@ -22,12 +23,21 @@
 }
 h1, h2, h3, h4, h5, h6 {
     font-weight: var(--bold);
+    line-height: 1.2;
+
 }
 h3{
     color:var(--white);
     font-weight: var(--bold);
     font-size: 20px;
     margin-left: 4rem;
+
+}
+h6{
+    font-size:1.7rem;
+    font-weight: 600;
+    padding-bottom: 20px;
+    
 }
 .decoration_h3{
     width: 109px;
@@ -44,7 +54,6 @@ h4{
 }
 a{
     text-decoration:none;
-    color:var(--pink) ;
 }
 
 ul{
@@ -52,10 +61,19 @@ ul{
     padding:0;
     margin:0;
 }
+.li:hover{
+    cursor: pointer;
+}
+
 
 .underline{
     text-decoration: underline;
-    color:var(--white) !important;
+    color:var(--white);
+}
+.underline:hover{
+    color:var(--pink);
+    transition-duration: 1.5s;
+    cursor:pointer;
 }
 
 
@@ -96,15 +114,26 @@ header{
 .menu_central{
     gap:1.5rem;
     align-items: center;
-}
+}*
+/*modif pour que les elements a prenne 100% du li   03/03/2023*/
 .onglet_menu{
     font-weight:var(--bold);
     color:var(--pink);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
 }
-.onglet_menu:hover{
+/*petite modification pour que la couleur change au survole de l'element li et non l'element a 03/05/2023*/
+.nav-item:hover a, .nav-item:hover .triangle{
     color:var(--beige);
     transition-duration: 1.5s;
 }
+.nav-item:hover .triangle {
+    border-top-color: var(--beige);
+}
+
+
 .onglet_menu_droite{
     display: flex;
     flex-direction: revert;
@@ -115,6 +144,23 @@ header{
     cursor: pointer;
 }
 
+/*ajout couleur pour les sous onglets 03/05/2023*/
+.sous_onglet li a{
+    color: var(--light-grey)!important;
+    /*pour que la balise a prenne 100% du parent li*/
+    display: block;
+    width: 100%;
+    /*decoration bordure*/
+    border-top: 1px solid var(--light-grey);
+    padding: 10px 0;
+}
+.sous_onglet a:hover{
+    color: var(--pink)!important;
+}
+
+.sous_onglet li:first-child a{
+    border-top: 0px ;
+}
 
 /* Masquer les sous-menus par défaut 02/05/2023 */
 .sous_onglet {
@@ -135,16 +181,14 @@ header{
 /*css li 02/05/2023*/
 .nav-item{
     height: 100%;
-    display: flex;
-    align-items: center;
+    cursor:pointer
 }
 .sous_onglet li{
     display: block;
     width: 100%;
-    padding: 0.33rem 1rem;
+    padding: 0rem 1rem 0rem 1rem;
     clear: both;
     font-weight: 400;
-    color: #8f96a3;
     text-align: inherit;
     white-space: nowrap;
     background-color: transparent;
@@ -162,6 +206,11 @@ header{
     border-top: 8px solid var(--pink);
     border-radius: 2px;
     transform: translate(0.2rem,0.4rem);
+}
+/*image boutique*/
+
+.img_boutique{
+    height: 3rem;
 }
 
 
@@ -266,6 +315,63 @@ header{
     margin-left: 4rem;
     margin-top: 0.5rem;
 }
+
+/*section association echo-mer*/
+
+.echo-mer{
+    margin-top:2rem;
+    background: linear-gradient(25deg, lightskyblue, white 40%, lightgreen);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 9rem;
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+    color: var(--light-grey);
+}
+.echo-mer p{
+    width: 635px;
+    padding-bottom: 20px;
+}
+.image-echo-mer{
+    width: 70%;
+}
+.bouton_echo-mer{
+    padding: 12px 30px;
+    font-weight: 600;
+    border-radius: 6px;
+    line-height: 1.5;
+    text-align: center;
+    cursor: pointer;
+    color:var(--pink);
+    border: 2px solid var(--pink);
+}
+.bouton_echo-mer:hover{
+    color: #fff;
+    background-color: var(--pink);
+    border-color: var(--pink);
+}
+
+/*section partenaire et clien*/
+
+.partenaire-client{
+    margin-top: 2rem;
+}
+
+.img_carrousel{
+    border-radius: 2rem;
+    height: 20rem;
+}
+.fleche_carrousel_droite{
+    transform: rotate(180deg);
+
+}
+.carrousel{
+    display:flex;
+    flex-direction: row;
+    gap:1rem;
+}
 /*footer*/
 footer{
     color:var(--white);
@@ -315,12 +421,7 @@ footer section section{
     gap: 1.5rem;
 }
 
-/* code a restester  */
-.groupe_icone a:hover {
-    fill: var(--beige);
-    transition: top 0.3s ease-in-out;
-}
-/* fin code a tester */
+
 
 
 .copyright{

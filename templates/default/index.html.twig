@@ -5,7 +5,7 @@
 
 {% block body %}
 	<div class="example-wrapper">
-
+		<!-- debut introduction-->
 		<section class="introduction">
 
 			<div class="image_introduction"></div>
@@ -26,53 +26,84 @@
 						</a>
 					{% endfor %}
 				</div>
-
-
-			</section>
-			<section class="video">
-				{% for item in video %}
-					<h3>{{item.titre}}</h3>
-					<div class="decoration_h3"></div>
-					<div class="container_video">
-						<iframe width="560" height="315" src="{{item.getLienVideo()}}+?playlist=ApL2PgLBjes&loop=1&rel=0&modestbranding=1&autohide=1&mute=1&showinfo=0&controls=0&autoplay=1" width="560" height="315" frameborder="0" allowfullscreen></iframe>
-					</div>
-				{% endfor %}
-			</section>
-
-			<section class="service">
-				<h3>Nos services</h3>
+		</section>
+		<!--fin introduction-->
+		<!--debut section video-->
+		<section class="video">
+			{% for item in video %}
+				<h3>{{item.titre}}</h3>
 				<div class="decoration_h3"></div>
+				<div class="container_video">
+					<iframe width="560" height="315" src="{{item.getLienVideo()}}+?playlist=ApL2PgLBjes&loop=1&rel=0&modestbranding=1&autohide=1&mute=1&showinfo=0&controls=0&autoplay=1" width="560" height="315" frameborder="0" allowfullscreen></iframe>
+				</div>
+			{% endfor %}
+		</section>
+		<!--fin section video-->
+		<!--debut section service-->
+		<section id="section_service" class="service">
+			<h3>Nos services</h3>
+			<div class="decoration_h3"></div>
 
+			<div class="container_service">
+				<div class="container_icone_service">
+					<!--liste des icones-->
+					{% for item in service %}
+						<div class="container_icone" onmouseover="description_service(`{{item.id}}`, `{{item.titre}}`, `{{item.description}}`)">
+							<img class=" icone" id={{item.id}} src=" {{item.lien}} " alt=" icone a2mi">
+						</div>
+					{% endfor %}
+					{% set firstItem = service[0] %}
+				</div>
 
-				<div class="container_service">
-					<div
-						class="container_icone_service">
-						<!--liste des icones-->
-						{% for item in service %}
-							<div class="container_icone" onclick="description_service(`{{item.id}}`, `{{item.titre}}`, `{{item.description}}`)">
-								<img class=" icone" id={{item.id}} src=" {{item.lien}} " alt=" icone a2mi">
-							</div>
-						{% endfor %}
-						{% set firstItem = service[0] %}
+				<div class="bulle">
+					<div class="triangle_bulle" id="triangle"></div>
+					<div class="contenue_bulle">
+						<!--contenue de la bulle-->
+						<div>
+							<h5 id="titre_service">{{firstItem.titre}}</h5>
+							<p id="description_service">{{firstItem.description}}</p>
+						</div>
 					</div>
+				</div>
+			</div>
+		</section>
+		<!--fin section service -->
+		<!--debut section echo-mer 03/05/2023-->
 
-					<div class="bulle">
-						<diV class="triangle_bulle" id="triangle"></div>
-						<div
-							class="contenue_bulle">
+		<section class="echo-mer">
+			{% for item in echoMer %}
+				<div>
+					<img class="image-echo-mer"id={{item.id}} src="{{item.image}}" alt="image Echo-mer">
+				</div>
+				<div>
+					<h6>{{item.titre}}</h6>
+					<p>{{item.description}}</p>
+					<a  class="bouton_echo-mer" href="{{item.getLienBouton()}}">{{item.getNomBouton()}}</a>
+				</div>
+				
+			{% endfor %}
+		</section>
+		<!--fin section echo-mer-->
 
-							<!--contenue de la bulle-->
-							<div>
-								<h5 id="titre_service">{{firstItem.titre}}</h5>
-								<p id="description_service">{{firstItem.description}}</p>
-								<div></div>
-							</div>
+		<!--debut section logo: partenaire et client 03/05/2023-->
+		<section class="partenaire-client">
+			<h3>Nos partenaires et nos clients</h3>
+			<div class="decoration_h3"></div>
 
+			<div class="carrousel">
+				<img class="fleche_carrousel_gauche" src="{{ asset('icones/section_partenaire_et_client/fleche.svg') }}" alt="fleche A2MI">
 
-						</section>
-						<section class="echo-mer"></section>
-						<section class="partenaire-client"></section>
-						<section class="technologie"></section>
+				<img class="img_carrousel" src="{{ asset('images/accueil/logos_partenaires_clients/exemple_client.png') }}" alt="boutique A2MI">
 
-					</div>
-				{% endblock %}
+				<img class="img_carrousel" src="{{ asset('images/accueil/logos_partenaires_clients/exemple_partenaire.jpg') }}" alt="boutique A2MI">
+
+				<img class="img_carrousel" src="{{ asset('images/accueil/logos_partenaires_clients/exemple_client.png') }}" alt="boutique A2MI">
+
+				<img class="fleche_carrousel_droite" src="{{ asset('icones/section_partenaire_et_client/fleche.svg') }}" alt="fleche A2MI">
+
+			</div>
+		
+		</section>
+		<!--fin section logo: partenaire et client-->
+	</div>
+{% endblock %}
