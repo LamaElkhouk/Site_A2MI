@@ -7,6 +7,8 @@ use App\Entity\Introduction;
 use App\Entity\Video;
 use App\Entity\Service;
 use App\Entity\EchoMer;
+use App\Entity\Logo;
+use App\Repository\LogoRepository;
 use App\Repository\EchoMerRepository;
 use App\Repository\ServiceRepository;
 use App\Repository\OngletsHeaderRepository;
@@ -21,7 +23,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class DefaultController extends AbstractController
 {
     public function __construct(private OngletsHeaderRepository $ongletRepository, private IntroductionRepository $introductionRepository,
-        private VideoRepository $videoRepository, private ServiceRepository $serviceRepository, private EchoMerRepository $echoMerRepository)
+        private VideoRepository $videoRepository, private ServiceRepository $serviceRepository, private EchoMerRepository $echoMerRepository,
+        private LogoRepository $logoRepository)
     {
     }
 
@@ -48,12 +51,17 @@ class DefaultController extends AbstractController
         //section echo-mer 03-05-2023
 
         $echoMer = $this->echoMerRepository->findAll(EchoMer::class);
+
+        //section logo 04-05-2023
+
+        $logo = $this->logoRepository->findAll(Logo::class);
         return $this->render('default/index.html.twig', [
             'onglets' => $onglets,
             'introduction' => $introduction,
             'video' => $video,
             'service' => $service,
-            'echoMer'=> $echoMer
+            'echoMer'=> $echoMer,
+            'logo'=> $logo
         ]);
     }
 

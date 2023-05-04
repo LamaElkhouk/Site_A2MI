@@ -89,26 +89,9 @@
 		<!--fin section echo-mer-->
 
 		<!--debut section logo: partenaire et client 03/05/2023-->
-		<section class="partenaire-client">
-			<h3>Nos partenaires et nos clients</h3>
-			<div class="decoration_h3"></div>
 
-			<div class="carousel">
-				<img class="fleche_carousel_gauche" src="{{ asset('icones/section_partenaire_et_client/fleche.svg') }}" alt="fleche A2MI">
-
-				<img class="img_carousel" src="{{ asset('images/accueil/logos_partenaires_clients/exemple_client.png') }}" alt="boutique A2MI">
-
-				<img class="img_carousel" src="{{ asset('images/accueil/logos_partenaires_clients/exemple_partenaire.jpg') }}" alt="boutique A2MI">
-
-				<img class="img_carousel" src="{{ asset('images/accueil/logos_partenaires_clients/exemple_client.png') }}" alt="boutique A2MI">
-
-				<img class="fleche_carousel_droite" src="{{ asset('icones/section_partenaire_et_client/fleche.svg') }}" alt="fleche A2MI">
-
-			</div>
-		
-		</section>
-	<section>
-		<h3>test carousel!</h3>
+	<section class="partenaire-client">
+		<h3>Nos partenaires et nos clients</h3>
 		<div class="decoration_h3"></div>
 		<div id="carouselIndicators" class="carousel slide">
 			<!--debut indicateur-->
@@ -116,51 +99,35 @@
 				<!-- l'attribut data-slide-to="0" indique l'id de l'indicateur .
 				j'en ai mit 3 pour tester, afin d'afficher 3 groupes d'element par groupe de 3 images
 				-->
-				<li data-target="#carouselIndicators" data-slide-to="0" class="active"></li>
-				<li data-target="#carouselIndicators" data-slide-to="1"></li>
-				<li data-target="#carouselIndicators" data-slide-to="2"></li>
+				
+				{% for items in logo|batch(3, null) %}
+				<li data-target="#carouselIndicators" data-slide-to="{{ loop.index0 }}" {% if loop.first  %}class="active"{% endif %}></li>
+				{% endfor %}
 			</ol>
 			<!--fin indicateur-->
 
 			<img class="carousel-control-prev" aria-hidden="true" src="{{ asset('icones/section_partenaire_et_client/fleche.svg') }}" alt="fleche A2MI">
 			<div class="carousel-inner">
-				<!-- premier groupe -->
-				<div class="carousel-item active">
-					<div class="row">
-        				<div class="col-sm">
-							<img class="img_carousel" src="{{ asset('images/accueil/logos_partenaires_clients/exemple_client.png') }}" alt="First slide">
-							<img class="img_carousel" src="{{ asset('images/accueil/logos_partenaires_clients/exemple_partenaire.jpg') }}" alt="Second slide">
-							<img class="img_carousel" src="{{ asset('images/accueil/logos_partenaires_clients/exemple_client2.jpg') }}" alt="Third slide">
+				{% for items in logo|batch(3,null) %}
+					<div class="carousel-item {% if loop.first  %}active{% endif %}">
+						<div class="row">
+							<div class="col-sm">
+							{% for item in items %}
+								{% if item != null %}
+								<img class="img_carousel" src="{{item.image}}"  alt="{{item.image}}">
+								{% endif %}
+							{% endfor %}
+							</div>
 						</div>
 					</div>
-				</div>
-				<!-- deusieme groupe -->
-				<div class="carousel-item">
-					<div class="row">
-        				<div class="col-sm">
-					<img class="img_carousel" src="{{ asset('images/accueil/logos_partenaires_clients/exemple_client3.png') }}" alt="Third slide">
-					<img class="img_carousel" src="{{ asset('images/accueil/logos_partenaires_clients/exemple_client4.jpg') }}" alt="Third slide">
-					<img class="img_carousel" src="{{ asset('images/accueil/logos_partenaires_clients/exemple_client5.jpg') }}" alt="Third slide">
-										</div>
-					</div>
-				</div>
-				<!-- troisieme groupe -->
-				<div class="carousel-item">
-					<div class="row">
-        				<div class="col-sm">
-					<img class="img_carousel" src="{{ asset('images/accueil/logos_partenaires_clients/exemple_partenaire.jpg') }}" alt="Second slide">
-					<img class="img_carousel" src="{{ asset('images/accueil/logos_partenaires_clients/exemple_client.png') }}" alt="First slide">
-					<img class="img_carousel" src="{{ asset('images/accueil/logos_partenaires_clients/exemple_client4.jpg') }}" alt="Third slide">
-										</div>
-					</div>
-				</div>
+				{% endfor %}
 			</div>
 			<img class="carousel-control-next" aria-hidden="true" src="{{ asset('icones/section_partenaire_et_client/fleche.svg') }}" alt="fleche A2MI">
-
-		
-			
 		</div>
 	</section>
+
+	
+
 
 <!-- A tester plutard => afficher 3 elements et lorsqu'on clique sur la fleche, faire apparaitre un element au lieu de trois 
 elements d'un coup--> 
