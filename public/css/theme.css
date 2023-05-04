@@ -315,8 +315,14 @@ header{
     margin-left: 4rem;
     margin-top: 0.5rem;
 }
+/*petite modification pour centrer les services*/
+.container_icones_bulle{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
-/*section association echo-mer*/
+/*section association echo-mer 03/05/2023*/
 
 .echo-mer{
     margin-top:2rem;
@@ -353,25 +359,55 @@ header{
     border-color: var(--pink);
 }
 
-/*section partenaire et clien*/
+/*section partenaire et client*/
 
 .partenaire-client{
     margin-top: 2rem;
 }
 
-.img_carrousel{
+/* modification css carrousel le 04/05/2023*/
+.img_carousel{
     border-radius: 2rem;
-    height: 20rem;
+    height: 16rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
 }
-.fleche_carrousel_droite{
+.fleche_carousel_droite{
     transform: rotate(180deg);
 
 }
-.carrousel{
-    display:flex;
-    flex-direction: row;
-    gap:1rem;
+.fleche_carousel_droite, .fleche_carousel_gauche{
+    cursor: pointer;
 }
+.carousel {
+    margin: auto; /* centre le carousel horizontalement */
+    max-width: 900px; /* largeur maximale du carousel */
+
+}
+.carousel-item {
+    text-align: center; /* centre l'image verticalement */
+}
+.img_carousel {
+    max-height: 200px; /* hauteur maximale des images */
+    object-fit: contain; /* affiche l'image entière tout en conservant ses proportions */
+}
+.carousel-indicators {
+    bottom: -3rem;
+}
+.carousel-indicators li {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin: 0 5px;
+    border-radius: 50%;
+    background-color: var(--pink);
+    opacity: 0.3;
+    
+}
+.carousel-indicators .active {
+    background-color: var(--pink);
+}
+/* fin css carousel*/
 /*footer*/
 footer{
     color:var(--white);

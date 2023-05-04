@@ -45,26 +45,29 @@
 			<div class="decoration_h3"></div>
 
 			<div class="container_service">
-				<div class="container_icone_service">
-					<!--liste des icones-->
-					{% for item in service %}
-						<div class="container_icone" onmouseover="description_service(`{{item.id}}`, `{{item.titre}}`, `{{item.description}}`)">
-							<img class=" icone" id={{item.id}} src=" {{item.lien}} " alt=" icone a2mi">
-						</div>
-					{% endfor %}
-					{% set firstItem = service[0] %}
-				</div>
+				<div class="container_icones_bulle">
+					<div class="container_icone_service">
+						<!--liste des icones-->
+						{% for item in service %}
+							<div class="container_icone" onmouseover="description_service(`{{item.id}}`, `{{item.titre}}`, `{{item.description}}`)">
+								<img class=" icone" id={{item.id}} src=" {{item.lien}} " alt=" icone a2mi">
+							</div>
+						{% endfor %}
+						{% set firstItem = service[0] %}
+					</div>
 
-				<div class="bulle">
-					<div class="triangle_bulle" id="triangle"></div>
-					<div class="contenue_bulle">
-						<!--contenue de la bulle-->
-						<div>
-							<h5 id="titre_service">{{firstItem.titre}}</h5>
-							<p id="description_service">{{firstItem.description}}</p>
+					<div class="bulle">
+						<div class="triangle_bulle" id="triangle"></div>
+						<div class="contenue_bulle">
+							<!--contenue de la bulle-->
+							<div>
+								<h5 id="titre_service">{{firstItem.titre}}</h5>
+								<p id="description_service">{{firstItem.description}}</p>
+							</div>
 						</div>
 					</div>
 				</div>
+				
 			</div>
 		</section>
 		<!--fin section service -->
@@ -90,20 +93,77 @@
 			<h3>Nos partenaires et nos clients</h3>
 			<div class="decoration_h3"></div>
 
-			<div class="carrousel">
-				<img class="fleche_carrousel_gauche" src="{{ asset('icones/section_partenaire_et_client/fleche.svg') }}" alt="fleche A2MI">
+			<div class="carousel">
+				<img class="fleche_carousel_gauche" src="{{ asset('icones/section_partenaire_et_client/fleche.svg') }}" alt="fleche A2MI">
 
-				<img class="img_carrousel" src="{{ asset('images/accueil/logos_partenaires_clients/exemple_client.png') }}" alt="boutique A2MI">
+				<img class="img_carousel" src="{{ asset('images/accueil/logos_partenaires_clients/exemple_client.png') }}" alt="boutique A2MI">
 
-				<img class="img_carrousel" src="{{ asset('images/accueil/logos_partenaires_clients/exemple_partenaire.jpg') }}" alt="boutique A2MI">
+				<img class="img_carousel" src="{{ asset('images/accueil/logos_partenaires_clients/exemple_partenaire.jpg') }}" alt="boutique A2MI">
 
-				<img class="img_carrousel" src="{{ asset('images/accueil/logos_partenaires_clients/exemple_client.png') }}" alt="boutique A2MI">
+				<img class="img_carousel" src="{{ asset('images/accueil/logos_partenaires_clients/exemple_client.png') }}" alt="boutique A2MI">
 
-				<img class="fleche_carrousel_droite" src="{{ asset('icones/section_partenaire_et_client/fleche.svg') }}" alt="fleche A2MI">
+				<img class="fleche_carousel_droite" src="{{ asset('icones/section_partenaire_et_client/fleche.svg') }}" alt="fleche A2MI">
 
 			</div>
 		
 		</section>
-		<!--fin section logo: partenaire et client-->
-	</div>
+	<section>
+		<h3>test carousel!</h3>
+		<div class="decoration_h3"></div>
+		<div id="carouselIndicators" class="carousel slide">
+			<!--debut indicateur-->
+			<ol class="carousel-indicators">
+				<!-- l'attribut data-slide-to="0" indique l'id de l'indicateur .
+				j'en ai mit 3 pour tester, afin d'afficher 3 groupes d'element par groupe de 3 images
+				-->
+				<li data-target="#carouselIndicators" data-slide-to="0" class="active"></li>
+				<li data-target="#carouselIndicators" data-slide-to="1"></li>
+				<li data-target="#carouselIndicators" data-slide-to="2"></li>
+			</ol>
+			<!--fin indicateur-->
+			<div class="carousel-inner">
+				<!-- premier groupe -->
+				<div class="carousel-item active">
+					<div class="row">
+        				<div class="col-sm">
+							<img class="img_carousel" src="{{ asset('images/accueil/logos_partenaires_clients/exemple_client.png') }}" alt="First slide">
+							<img class="img_carousel" src="{{ asset('images/accueil/logos_partenaires_clients/exemple_partenaire.jpg') }}" alt="Second slide">
+							<img class="img_carousel" src="{{ asset('images/accueil/logos_partenaires_clients/exemple_client2.jpg') }}" alt="Third slide">
+						</div>
+					</div>
+				</div>
+				<!-- deusieme groupe -->
+				<div class="carousel-item">
+					<div class="row">
+        				<div class="col-sm">
+					<img class="img_carousel" src="{{ asset('images/accueil/logos_partenaires_clients/exemple_client3.png') }}" alt="Third slide">
+					<img class="img_carousel" src="{{ asset('images/accueil/logos_partenaires_clients/exemple_client4.jpg') }}" alt="Third slide">
+					<img class="img_carousel" src="{{ asset('images/accueil/logos_partenaires_clients/exemple_client5.jpg') }}" alt="Third slide">
+										</div>
+					</div>
+				</div>
+				<!-- troisieme groupe -->
+				<div class="carousel-item">
+					<div class="row">
+        				<div class="col-sm">
+					<img class="img_carousel" src="{{ asset('images/accueil/logos_partenaires_clients/exemple_partenaire.jpg') }}" alt="Second slide">
+					<img class="img_carousel" src="{{ asset('images/accueil/logos_partenaires_clients/exemple_client.png') }}" alt="First slide">
+					<img class="img_carousel" src="{{ asset('images/accueil/logos_partenaires_clients/exemple_client4.jpg') }}" alt="Third slide">
+										</div>
+					</div>
+				</div>
+			</div>
+			<!--J'ai ajouté deux fleches pour pouvoir navigué à vers la gauche et la droite-->
+			<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+				<!--fleche pour revenir en arriére -->
+				<img class="fleche_carousel_gauche" aria-hidden="true" src="{{ asset('icones/section_partenaire_et_client/fleche.svg') }}" alt="fleche A2MI">
+			</a>
+			<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+				<!--fleche pour aller en avant -->
+				<img class="fleche_carousel_droite" aria-hidden="true" src="{{ asset('icones/section_partenaire_et_client/fleche.svg') }}" alt="fleche A2MI">
+			</a>
+		</div>
+	</section>
+	
+	<!--fin section logo: partenaire et client-->
 {% endblock %}

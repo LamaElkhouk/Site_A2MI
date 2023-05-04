@@ -13,3 +13,25 @@ function description_service(id, title, description) {
 
     //console.log(title);
 } 
+
+//script ajouté le 04-05-2023
+const carousel = document.querySelector('.carousel');
+const prevButton = document.querySelector('.carousel-control-prev')
+const nextButton = document.querySelector('.carousel-control-next')
+
+$('.carousel').carousel({
+    interval:1500,
+    pause: 'hover',
+    wrap: true,
+    ride: "carousel", // permet de démarrer le carousel automatiquement à l'initialisation
+    items: 4, // nombre d'images à afficher simultanément
+    center: true, // centre les images sur la page
+})
+
+nextButton.addEventListener('click', () =>{
+    $('.carousel').carousel('next');
+})
+
+prevButton.addEventListener('click', () =>{
+    $('.carousel').carousel('prev');
+})
