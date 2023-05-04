@@ -372,12 +372,14 @@ header{
     margin-left: 1rem;
     margin-right: 1rem;
 }
-.fleche_carousel_droite{
+.carousel-control-next{
     transform: rotate(180deg);
 
 }
-.fleche_carousel_droite, .fleche_carousel_gauche{
+.carousel-control-next, .carousel-control-prev{
     cursor: pointer;
+    top:2rem;
+    width: 12%;
 }
 .carousel {
     margin: auto; /* centre le carousel horizontalement */
@@ -392,12 +394,12 @@ header{
     object-fit: contain; /* affiche l'image entière tout en conservant ses proportions */
 }
 .carousel-indicators {
-    bottom: -3rem;
+    bottom: -4rem;
 }
 .carousel-indicators li {
     display: inline-block;
-    width: 10px;
-    height: 10px;
+    width: 12px;
+    height: 12px;
     margin: 0 5px;
     border-radius: 50%;
     background-color: var(--pink);

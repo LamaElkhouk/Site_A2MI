@@ -1,4 +1,4 @@
-//script ajouté le 02-05-2023
+//script pour la section service - page accueil, ajouté le 02-05-2023
 function description_service(id, title, description) {
     // recuperer la description et le titre correspondant à l'icone
     var titre_service= document.getElementById("titre_service");
@@ -14,18 +14,16 @@ function description_service(id, title, description) {
     //console.log(title);
 } 
 
-//script ajouté le 04-05-2023
+//script section logo - page accueil, ajouté le 04-05-2023
 const carousel = document.querySelector('.carousel');
 const prevButton = document.querySelector('.carousel-control-prev')
 const nextButton = document.querySelector('.carousel-control-next')
 
 $('.carousel').carousel({
-    interval:1500,
-    pause: 'hover',
-    wrap: true,
+    interval:2000, // temps en millisecondes avant de passer à la prochaine slide
+    pause: 'hover', // arrêter le défilement automatique lorsque la souris survole le carousel
+    wrap: true, // permet de boucler les slides une fois la dernière atteinte
     ride: "carousel", // permet de démarrer le carousel automatiquement à l'initialisation
-    items: 4, // nombre d'images à afficher simultanément
-    center: true, // centre les images sur la page
 })
 
 nextButton.addEventListener('click', () =>{
