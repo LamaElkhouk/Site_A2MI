@@ -31,7 +31,7 @@ class InscriptionType extends AbstractType
         //champs a masquer 15-05-2023
         $builder->remove('roles');
         $builder->remove('modify_by');
-        $builder->remove('created_at');
+        $builder->remove('createdAt');
         $builder->remove('last_modification');
     }
 

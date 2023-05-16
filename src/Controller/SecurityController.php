@@ -17,11 +17,13 @@ use Doctrine\ORM\EntityManagerInterface;
 
 //ajouter le 15-05-2023
 use Symfony\Component\Form\FormError;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+
 
 class SecurityController extends AbstractController
 {
-    public function __construct(private OngletsHeaderRepository $ongletRepository/*, private UserPasswordEncoderInterface $passwordEncoder*/)
+    
+    public function __construct(private OngletsHeaderRepository $ongletRepository,private UserPasswordHasherInterface $passwordHasher)
     {
     }
     #[Route(path: '/login', name: 'app_login')]
@@ -52,8 +54,10 @@ class SecurityController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) { //si les infos sont valide et qu'on clique sur le boutton "envoyer"
 
             // Encodez le mot de passe de l'utilisateur (si vous utilisez un encodeur de mots de passe)
-            /*$password = $passwordEncoder->encodePassword($user, $user->getPassword());
-            $user->setPassword($password);*/
+            $hashedPassword = $this->passwordHasher->hashPassword($user, $user->getPassword());
+            $user->setPassword($hashedPassword);
+            //initialiser par defaut le champs created AT avec la date d'aujourd'hui
+            $user->setCreatedAt(new \DateTime());
             // Traitez les données du formulaire ici
             $entityManager->persist($user);
             $entityManager->flush(); // ajoute les données dans la base !
